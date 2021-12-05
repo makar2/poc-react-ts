@@ -18,6 +18,7 @@ module.exports = {
   plugins: [
     'react',
     '@typescript-eslint',
+    'import',
   ],
   rules: {
     // v.1.5 (2021-10-14)
@@ -44,6 +45,23 @@ module.exports = {
     'react/jsx-one-expression-per-line': [1, { allow: 'single-child' }],
     'react/react-in-jsx-scope': 0,
     'react/jsx-props-no-spreading': 0,
-  }
-,
+
+    // React Typescript specific
+    // note you must disable the base rule as it can report incorrect errors
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': ['error'],
+    'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+    'react/function-component-definition': [
+      2,
+      {
+        namedComponents: 'arrow-function',
+        unnamedComponents: 'arrow-function',
+      },
+    ],
+  },
+  settings: {
+    'import/resolver': {
+      typescript: {},
+    },
+  },
 };
